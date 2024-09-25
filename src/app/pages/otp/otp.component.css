@@ -1,0 +1,64 @@
+
+.container-fluid{
+    background-image: linear-gradient(to right, #030d2a, #07674c);
+    background-size: cover;
+}
+
+.custom-card {
+    width: 500px;
+    height: auto;
+    padding: 30px;
+    border-radius: 12px
+}
+
+.custom-logo {
+    max-width: 250px; 
+}
+
+.custom-heading {
+    font-size: 1.7rem;
+    font-family: "Poppins", sans-serif;
+    font-weight:600;
+}
+
+.custom-button {
+    background-color: #030d2a !important;
+    border: none;
+    color: white;
+    border-radius: 4px; 
+    padding: 10px 0;
+}
+
+.d-flex {
+    margin-bottom: 0.5rem;
+}
+
+
+.link{
+    text-decoration: none;
+    color: #030d2a;
+    cursor: pointer;
+}
+
+mat-form-field mat-label{
+    color: #030d2a;
+}
+
+#password{
+    color: black;
+}
+
+.mat-icon {
+    color: #030d2a;
+}
+
+@media (max-width: 768px) {
+    .custom-card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .custom-heading {
+        font-size: 1.25rem;
+    }
+}
