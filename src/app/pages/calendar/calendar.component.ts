@@ -31,7 +31,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     private _router: Router) { }
 
   ngOnInit(): void {
-    this.socket = io('ws://localhost:3000');
+    this.socket = io('wss://time-slot-booking-backend.onrender.com');
     this.socket.on('timeSlotBooked', (updatedSlot: ITimeSlot) => {
       console.log(updatedSlot)
       this.viewAvailableSlots();
