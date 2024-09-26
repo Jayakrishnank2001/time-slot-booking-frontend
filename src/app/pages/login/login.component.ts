@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           } else {
             if (res.status === 'success' && res.role === 'admin') {
               this._authService.setToken('adminToken', res.token)
-              this._router.navigate(['/admin/dashboard'])
+              this._router.navigate(['/admin/create-slot'])
             } else {
               this._snackBarService.openSnackBar(res.message)
             }

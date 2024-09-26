@@ -2,16 +2,12 @@
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-12 sidebar">
             <mat-card class="admin-profile-card mb-2">
-                <div class="avatar"></div>
+                <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarImage + ')'}"></div>
                 <mat-card-header>
                     <p class="username">Admin</p>
                 </mat-card-header>
                 <mat-card-content class="profile-content">
                     <p class="email">{{email}}</p>
-                    <div class="button-group mt-5">
-                        <a routerLink="/admin/dashboard" mat-button color="primary">Time Slots</a>
-                        <a routerLink="/admin/create-slot" mat-button color="accent">Create New Slot</a>
-                    </div>
                 </mat-card-content>
                 <button class="btn mt-5" (click)="logOut()">Logout</button>
             </mat-card>

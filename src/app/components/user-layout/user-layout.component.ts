@@ -4,11 +4,12 @@ import { MaterialModule } from '../../material/material.module';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../models/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-layout',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule, RouterModule],
+  imports: [RouterOutlet, MaterialModule, RouterModule, CommonModule],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.css',
 })
@@ -16,6 +17,7 @@ export class UserLayoutComponent implements OnInit {
 
   userId!: string | null
   userData: IUser = {}
+  avatarImage: string = 'assets/images/people-profile-graphic_24911-21373.avif';
 
   constructor(private _userService: UserService,
     private _authService: AuthService,
@@ -31,7 +33,6 @@ export class UserLayoutComponent implements OnInit {
       this._userService.getUserData(this.userId).subscribe({
         next: (res) => {
           this.userData = res
-          console.log(this.userData)
         }
       })
   }

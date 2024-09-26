@@ -13,20 +13,20 @@ import { resetForm } from '../../helpers/formResetHelper';
   templateUrl: './create-slot.component.html',
   styleUrl: './create-slot.component.css',
 })
-export class CreateSlotComponent implements OnInit{
+export class CreateSlotComponent implements OnInit {
 
   slotForm!: FormGroup
-  minDate!:Date
+  minDate!: Date
 
   constructor(private _fb: FormBuilder,
     private _adminService: AdminService,
-  private _snackBarService:SnackbarService) { }
-  
+    private _snackBarService: SnackbarService) { }
+
   ngOnInit(): void {
     this.initializeForm()
   }
 
-  initializeForm():void {
+  initializeForm(): void {
     this.slotForm = this._fb.group({
       date: ['', Validators.required],
       startTime: ['', Validators.required],
@@ -36,13 +36,17 @@ export class CreateSlotComponent implements OnInit{
     this.minDate = new Date();
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     if (this.slotForm.valid) {
       const formData = this.slotForm.getRawValue()
       this._adminService.createSlot(formData).subscribe({
-        next: (res: IResponse)=>{
-          this._snackBarService.openSnackBar(res.message)
-          resetForm(this.slotForm)
+        next: (res: IResponse) => {
+          if (res.status === 'success') {
+            this._snackBarService.openSnackBar(res.message)
+            resetForm(this.slotForm)
+          } else {
+            this._snackBarService.openSnackBar(res.message)
+          }
         }
       })
     }
