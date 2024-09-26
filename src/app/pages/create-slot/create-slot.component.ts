@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './create-slot.component.html',
-  styleUrl: './create-slot.component.css'
+  styleUrl: './create-slot.component.css',
 })
 export class CreateSlotComponent {
 

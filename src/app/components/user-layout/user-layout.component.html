@@ -1,1 +1,25 @@
-<p>user-layout works!</p>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-12 sidebar">
+            <mat-card class="user-profile-card mb-2">
+                <div class="avatar"></div>
+                <mat-card-header>
+                    <mat-card-title class="username">{{userData.userName}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="profile-content">
+                    <p class="email">{{userData.email}}</p>
+                    <p class="phone mb-5">+91 {{userData.phone}}</p>
+                    <div class="button-group">
+                        <a routerLink="/user/calendar" mat-button color="primary">Calendar Booking</a>
+                        <a routerLink="/user/booking" mat-button color="accent">Booked Slots</a>
+                    </div>
+                </mat-card-content>
+                <button class="btn mt-5" (click)="logOut()">Logout</button>
+            </mat-card>
+        </div>
+
+        <div class="col-lg-9 col-md-8 col-sm-12 content-area">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

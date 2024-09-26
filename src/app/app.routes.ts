@@ -6,8 +6,8 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserLayoutComponent } from './components/user-layout/user-layout.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
-import { BookingComponent } from './pages/booking/booking.component';
 import { CreateSlotComponent } from './pages/create-slot/create-slot.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -30,6 +30,7 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminLayoutComponent,
+        canActivate:[authGuard],
         children: [
             {
                 path: 'dashboard',
@@ -45,14 +46,11 @@ export const routes: Routes = [
     {
         path: 'user',
         component: UserLayoutComponent,
+        canActivate:[authGuard],
         children: [
             {
                 path: 'calendar',
                 component: CalendarComponent
-            },
-            {
-                path: 'booking',
-                component: BookingComponent
             }
         ]
     }

@@ -1,0 +1,35 @@
+.admin-profile-card {
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 120px; 
+    height: 120px;
+    border-radius: 50%; 
+    background-image: url(../../../assets/images/people-profile-graphic_24911-21373.avif); 
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .username {
+    font-size: 1.5em; 
+    margin: 10px 0;
+  }
+  
+  .profile-content p {
+    margin: 5px 0; 
+  }
+  
+  .button-group {
+    display: flex; 
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .btn{
+    background-color: #07674c;
+    color: white;
+  }
+  

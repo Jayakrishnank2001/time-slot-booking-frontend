@@ -9,3 +9,11 @@ export interface IAuthResponse {
     token: string;
     role: string;
 }
+
+export interface DecodedToken {
+    id: string;
+    email: string;
+    role: string;
+    iat: number;
+    exp: number;
+}

@@ -4,7 +4,6 @@ import { validateByTrimming } from '../../helpers/validations';
 import { emailValidators, mobileValidators } from '../../shared/validators';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MaterialModule } from '../../material/material.module';
 import { IResponse } from '../../models/model';
 import { SnackbarService } from '../../services/snackbar.service';
@@ -14,7 +13,7 @@ import { SnackbarService } from '../../services/snackbar.service';
   standalone: true,
   imports: [MaterialModule, RouterModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent implements OnInit {
 

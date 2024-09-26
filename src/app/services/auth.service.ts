@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environments } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../models/user';
-import { IAuthResponse, IResponse } from '../models/model';
+import { DecodedToken, IAuthResponse, IResponse } from '../models/model';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,27 @@ export class AuthService {
     return this._http.post<IResponse>(`${this.baseURL}/resend-otp`,{email})
   }
 
+  extractUserIdFromToken(tokenKey: string) :string | null{
+    const token = this.getToken(tokenKey)
+    let decodedToken: DecodedToken
+    if (token) {
+      decodedToken = jwtDecode(token) 
+      return decodedToken.id
+    }
+    return null
+  }
+
+  getToken(tokenKey: string): string | null {
+    return localStorage.getItem(tokenKey)
+  }
+
+  setToken(tokenKey: string, token: string): void {
+    localStorage.setItem(tokenKey, token)
+  }
+
+  clearToken(tokenKey: string): void {
+    localStorage.removeItem(tokenKey)
+  }
 
 
 }

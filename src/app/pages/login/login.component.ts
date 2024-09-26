@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { validateByTrimming } from '../../helpers/validations';
 import { emailValidators } from '../../shared/validators';
@@ -15,7 +14,7 @@ import { IAuthResponse } from '../../models/model';
   standalone: true,
   imports: [MaterialModule, RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
 
@@ -53,17 +52,18 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.getRawValue()
-      this._authService.userLogin(formData.email,formData.password).subscribe({
-        next: (res:IAuthResponse) => {
+      this._authService.userLogin(formData.email, formData.password).subscribe({
+        next: (res: IAuthResponse) => {
           if (res.status === 'success' && res.role === 'user') {
-            const data = {
-              token: res.token,
-              role:res.role
-            }
-            localStorage.setItem('token', JSON.stringify(data))
-            this._router.navigate(['/'])
+            this._authService.setToken('userToken', res.token)
+            this._router.navigate(['/user/calendar'])
           } else {
-            
+            if (res.status === 'success' && res.role === 'admin') {
+              this._authService.setToken('adminToken', res.token)
+              this._router.navigate(['/admin/dashboard'])
+            } else {
+              this._snackBarService.openSnackBar(res.message)
+            }
           }
         }
       })

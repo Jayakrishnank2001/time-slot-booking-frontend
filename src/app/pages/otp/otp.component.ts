@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
 import { SnackbarService } from '../../services/snackbar.service';
@@ -12,7 +11,7 @@ import { IResponse } from '../../models/model';
   standalone: true,
   imports: [MaterialModule, ReactiveFormsModule],
   templateUrl: './otp.component.html',
-  styleUrl: './otp.component.css'
+  styleUrl: './otp.component.css',
 })
 export class OtpComponent implements OnInit {
 
