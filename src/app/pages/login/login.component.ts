@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { validateByTrimming } from '../../helpers/validations';
+import { emailValidators } from '../../shared/validators';
+import { SnackbarService } from '../../services/snackbar.service';
+import { IAuthResponse } from '../../models/model';
 
 @Component({
   selector: 'app-login',
@@ -19,16 +23,25 @@ export class LoginComponent implements OnInit {
   isPasswordVisible = false;
 
   constructor(private _fb: FormBuilder,
-    private _authService: AuthService, private router: Router,
-    private _snackBar: MatSnackBar) { }
+    private _authService: AuthService,
+    private _router: Router,
+    private _snackBarService: SnackbarService,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initializeForm();
+    this._route.queryParams.subscribe(params => {
+      let message = params['message'];
+      if (message) {
+        this._snackBarService.openSnackBar(message)
+        this._router.navigate([])
+      }
+    });
   }
 
   private initializeForm(): void {
     this.loginForm = this._fb.group({
-      userName: ['', [Validators.required]],
+      email: ['', [validateByTrimming(emailValidators)]],
       password: ['', [Validators.required]]
     })
   }
@@ -38,7 +51,23 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    if (this.loginForm.valid) {
+      const formData = this.loginForm.getRawValue()
+      this._authService.userLogin(formData.email,formData.password).subscribe({
+        next: (res:IAuthResponse) => {
+          if (res.status === 'success' && res.role === 'user') {
+            const data = {
+              token: res.token,
+              role:res.role
+            }
+            localStorage.setItem('token', JSON.stringify(data))
+            this._router.navigate(['/'])
+          } else {
+            
+          }
+        }
+      })
+    }
   }
 
 
