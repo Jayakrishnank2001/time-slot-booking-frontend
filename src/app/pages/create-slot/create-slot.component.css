@@ -1,0 +1,32 @@
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.create-slot-card {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    min-height: 400px;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+p{
+    font-weight: 600;
+    font-size: x-large;
+}
+
+@media (max-width: 768px) {
+    .create-slot-card {
+        padding: 20px;
+        min-height: 500px;
+    }
+}

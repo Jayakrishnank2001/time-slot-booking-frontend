@@ -6,7 +6,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   let token = '';
   if (req.url.includes('user') && userToken) {
     token = userToken;
-  } else if (req.url.includes('admin') && adminToken) {
+  } else {
+    if(adminToken)
     token = adminToken;
   }
   if (token) {

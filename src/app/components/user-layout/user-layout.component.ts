@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -8,7 +8,7 @@ import { IUser } from '../../models/user';
 @Component({
   selector: 'app-user-layout',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule],
+  imports: [RouterOutlet, MaterialModule, RouterModule],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.css',
 })

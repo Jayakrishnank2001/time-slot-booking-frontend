@@ -4,7 +4,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline" class="mb-1 w-100">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="" id="email" formControlName="email">
+                <input matInput placeholder="" id="email" formControlName="email" required>
                 <mat-icon matSuffix>person_outline</mat-icon>
             </mat-form-field>
 

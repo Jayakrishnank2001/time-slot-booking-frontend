@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule],
+  imports: [RouterOutlet, MaterialModule, RouterModule],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
 })

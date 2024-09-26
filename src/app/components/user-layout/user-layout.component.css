@@ -1,4 +1,12 @@
-.user-profile-card {
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .user-profile-card {
     padding: 20px;
     text-align: center;
     align-items: center;
@@ -25,11 +33,10 @@
   .button-group {
     display: flex; 
     flex-direction: column;
-    gap: 10px;
     margin-top: 10px;
   }
-
-  .btn{
+  
+  .btn {
     background-color: #07674c;
     color: white;
   }
