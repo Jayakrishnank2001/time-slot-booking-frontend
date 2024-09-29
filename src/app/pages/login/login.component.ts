@@ -54,16 +54,11 @@ export class LoginComponent implements OnInit {
       const formData = this.loginForm.getRawValue()
       this._authService.userLogin(formData.email, formData.password).subscribe({
         next: (res: IAuthResponse) => {
-          if (res.status === 'success' && res.role === 'user') {
-            this._authService.setToken('userToken', res.token)
+          if (res.status === 'success') {
+            this._authService.setToken('token', res.token)
             this._router.navigate(['/user/calendar'])
           } else {
-            if (res.status === 'success' && res.role === 'admin') {
-              this._authService.setToken('adminToken', res.token)
-              this._router.navigate(['/admin/create-slot'])
-            } else {
-              this._snackBarService.openSnackBar(res.message)
-            }
+            this._snackBarService.openSnackBar(res.message)
           }
         }
       })

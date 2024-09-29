@@ -28,7 +28,7 @@ export class UserLayoutComponent implements OnInit {
   }
 
   getUserData() {
-    this.userId = this._authService.extractUserIdFromToken('userToken')
+    this.userId = this._authService.extractUserIdFromToken('token')
     if (this.userId)
       this._userService.getUserData(this.userId).subscribe({
         next: (res) => {
