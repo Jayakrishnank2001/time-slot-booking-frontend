@@ -58,7 +58,8 @@ export class CalendarComponent implements OnInit {
   }
 
   onDateSelect(date: string) {
-    this._userService.getSlots().subscribe({
+    if(this.userId)
+    this._userService.getSlots(date,this.userId).subscribe({
       next: (res: SlotRes) => {
         this.timeSlots = res.slots
         this.selectedDate = date

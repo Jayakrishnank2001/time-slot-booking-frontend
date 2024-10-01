@@ -18,8 +18,8 @@ export class UserService {
     return this._http.get<IUser>(`${this.baseURL}/user-details/${userId}`)
   }
 
-  getSlots() {
-    return this._http.get<SlotRes>(`${this.baseURL}/get-slots`)
+  getSlots(date:string,userId:string) {
+    return this._http.get<SlotRes>(`${this.baseURL}/get-slots?date=${date}&userId=${userId}`)
   }
 
   bookSlot(userId: string, timeSlotId: string, invitee: string, bookingDate: string) {
