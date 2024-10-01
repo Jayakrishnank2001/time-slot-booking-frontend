@@ -1,0 +1,47 @@
+.navbar-custom {
+  background-image: linear-gradient(to right, #07674c,#030d2a);
+  height: auto;
+  box-shadow: 0 4px 6px rgb(33, 33, 33);
+}
+
+.custom-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-nav .navbar-nav-active {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.user-section img {
+  height: 35px;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.nav-link {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.user-section {
+  cursor: pointer;
+}
+
+.mat-menu-panel {
+  min-width: 150px;
+}
+
+.user-details {
+  text-align: center; 
+}
+
+.logout-button{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

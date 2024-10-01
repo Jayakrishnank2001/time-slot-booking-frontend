@@ -1,0 +1,22 @@
+.booked-slots-card {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.slot-card {
+    background-image: linear-gradient(to right, #9aa3c0, #c0cac7);
+    border-radius: 8px;
+}
+
+.slot-card mat-card-content p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.mat-card-actions {
+    padding-top: 10px;
+}
+
+button {
+    border-radius: 20px;
+}

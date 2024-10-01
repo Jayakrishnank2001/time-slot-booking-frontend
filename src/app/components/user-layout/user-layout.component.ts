@@ -5,11 +5,12 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../models/user';
 import { CommonModule } from '@angular/common';
+import { CalendarComponent } from "../../pages/calendar/calendar.component";
 
 @Component({
   selector: 'app-user-layout',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule, RouterModule, CommonModule],
+  imports: [RouterOutlet, MaterialModule, RouterModule, CommonModule, CalendarComponent],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.css',
 })
@@ -38,8 +39,12 @@ export class UserLayoutComponent implements OnInit {
   }
 
   logOut() {
-    this._authService.clearToken('userToken')
+    this._authService.clearToken('token')
     this._router.navigate(['/login'])
+  }
+
+  isActive(link: string): boolean {
+    return this._router.url.includes(link.toLowerCase());
   }
 
 }

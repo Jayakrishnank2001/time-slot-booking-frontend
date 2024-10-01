@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            <img src="../../../assets/images/pngtree-calendar-icon-logo-2023-date-time-png-image_6310337.png" alt="Company Logo" class="custom-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-3" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/user/calendar">
+                        <span class="ms-1">Calendar Booking</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/user/booked-slots">
+                        <span class="ms-1">Booked Slots</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-section d-flex align-items-center" [matMenuTriggerFor]="userMenu">
+                <img [src]="avatarImage" alt="User Logo"
+                    class="rounded-circle me-2">
+                <span class="text-white">{{userData.userName}}</span>
+            </div>
+
+            <mat-menu #userMenu="matMenu" class="user-menu">
+                <div class="logout-button">
+                  <button mat-button (click)="logOut()">
+                    <span>Logout</span>
+                  </button>
+                </div>
+              </mat-menu>
+              
+
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
