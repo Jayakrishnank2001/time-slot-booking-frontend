@@ -31,11 +31,6 @@ export class OtpComponent implements OnInit {
     })
     this._route.queryParams.subscribe(params => {
       this.email = params['email'];
-      const message = params['message']
-      if (message) {
-        this._snackBarService.openSnackBar(message)
-        this._router.navigate([])
-      }
     });
   }
 

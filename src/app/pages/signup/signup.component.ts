@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
         next: (res:IResponse) => {
           if (res.status === 'success') {
             const email = this.signupForm.get('email')!.value;
-            this._router.navigate(['/otp'],{ queryParams: { email: email,message:'OTP sent to Email' } })
+            this._router.navigate(['/otp'],{ queryParams: { email: email } })
           } else {
             this._snackBarService.openSnackBar(res.message)
           }

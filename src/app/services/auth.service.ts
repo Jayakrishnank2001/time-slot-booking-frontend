@@ -11,7 +11,8 @@ import { jwtDecode } from 'jwt-decode';
   
 export class AuthService {
 
-  baseURL=environments.baseURL
+  baseURL = environments.baseURL
+  private email: string = ''; 
 
   constructor(private _http: HttpClient) { }
   
@@ -27,7 +28,7 @@ export class AuthService {
     return this._http.post<IResponse>(`${this.baseURL}/verify-otp`,{otp,email})
   }
 
-  resendOTP(email:string) {
+  resendOTP(email: string) {
     return this._http.post<IResponse>(`${this.baseURL}/resend-otp`,{email})
   }
 
