@@ -31,6 +31,16 @@ export class CalendarComponent implements OnInit {
   userEmail!: string
   showDetailsForm: boolean = false;
   detailsForm!: FormGroup
+  calculatedEndTime!: string;
+
+  timeOptions = [
+    { label: '15 min', value: 15 },
+    { label: '30 min', value: 30 },
+    { label: '45 min', value: 45 },
+    { label: '1 hr', value: 60 }
+  ];
+  selectedDuration=30
+
 
   constructor(private _authService: AuthService,
     private _userService: UserService,
@@ -70,13 +80,14 @@ export class CalendarComponent implements OnInit {
   selectTimeSlot(slot: ISlot) {
     this.seletedSlot = slot
     this.showDetailsForm = true
+    this.calculateEndTime()
   }
 
   scheduleEvent() {
     this.userId = this._authService.extractUserIdFromToken('token')
     if (this.detailsForm.valid && this.userId && this.selectedDate) {
       const formData = this.detailsForm.getRawValue()
-      this._userService.bookSlot(this.userId, this.seletedSlot._id, formData.name,this.selectedDate).subscribe({
+      this._userService.bookSlot(this.userId, this.seletedSlot._id, formData.name,this.selectedDate,this.calculatedEndTime).subscribe({
         next: (res: IResponse) => {
           if (res.status === 'success') {
             this._snackBarService.openSnackBar(res.message)
@@ -91,6 +102,35 @@ export class CalendarComponent implements OnInit {
 
   goBack() {
     this.showDetailsForm = false
+  }
+
+  calculateEndTime(): void {
+    const startTime = this.convertTimeToDate(this.seletedSlot.startTime);
+    const endTime = new Date(startTime.getTime() + this.selectedDuration * 60000);
+    this.calculatedEndTime = this.formatTime(endTime);
+  }
+
+  convertTimeToDate(time: string): Date {
+    const [hoursMinutes, modifier] = time.split(' ');
+    let [hours, minutes] = hoursMinutes.split(':').map(Number);
+    if (modifier === 'PM' && hours !== 12) {
+      hours += 12;
+    } else if (modifier === 'AM' && hours === 12) {
+      hours = 0;
+    }
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
+
+  formatTime(date: Date): string {
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const modifier = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    return `${hours}:${formattedMinutes} ${modifier}`;
   }
 
 }

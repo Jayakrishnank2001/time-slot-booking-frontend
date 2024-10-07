@@ -6,11 +6,16 @@
         <p class="meeting-header">Meeting</p>
         <div class="clock-duration d-flex align-items-center mt-2">
           <mat-icon class="clock-icon">access_time</mat-icon>
-          <span class="duration ms-2 fw-normal">30 min</span>
+          <select class="form-select ms-2 fw-normal" [(ngModel)]="selectedDuration" [disabled]="showDetailsForm">
+            <option *ngFor="let option of timeOptions" [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select>
         </div>
+        
         <div class="clock-duration d-flex align-items-center mt-3" *ngIf="seletedSlot">
           <mat-icon class="clock-icon">event</mat-icon>
-          <span class="duration ms-2 fw-normal">{{seletedSlot.startTime}} - {{seletedSlot.endTime}}, {{ selectedDate |
+          <span class="duration ms-2 fw-normal">{{seletedSlot.startTime}} - {{calculatedEndTime}}, {{ selectedDate |
             date:'EEEE, MMMM d, y' }}</span>
         </div>
         <div class="clock-duration d-flex align-items-center mt-3" *ngIf="seletedSlot">
@@ -28,7 +33,7 @@
           <p class="text-center mb-2 fw-bold">{{ selectedDate | date:'EEEE, MMMM d, y' }}</p>
           <div class="d-flex flex-wrap justify-content-center mt-3">
             <button mat-stroked-button *ngFor="let slot of timeSlots" class="m-1" (click)="selectTimeSlot(slot)" [ngClass]="{'selected-slot': seletedSlot === slot}">
-              {{slot.startTime}} - {{slot.endTime}}
+              {{slot.startTime}}
             </button>
           </div>
         </div>

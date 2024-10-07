@@ -16,5 +16,6 @@ export interface IBooking{
     invitee: string
     bookingDate: string
     status: string
-    bookedDate:string
+    bookedDate: string,
+    endTime:string
 }

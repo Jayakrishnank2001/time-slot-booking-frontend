@@ -22,9 +22,9 @@ export class UserService {
     return this._http.get<SlotRes>(`${this.baseURL}/get-slots?date=${date}&userId=${userId}`)
   }
 
-  bookSlot(userId: string, timeSlotId: string, invitee: string, bookingDate: string) {
+  bookSlot(userId: string, timeSlotId: string, invitee: string, bookingDate: string, endTime:string) {
     
-    return this._http.post<IResponse>(`${this.baseURL}/book-slot`, { userId, timeSlotId, invitee, bookingDate })
+    return this._http.post<IResponse>(`${this.baseURL}/book-slot`, { userId, timeSlotId, invitee, bookingDate, endTime })
   }
 
   getBookedSlots(userId:string) {
